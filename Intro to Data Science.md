@@ -23,6 +23,7 @@ Brought to you by [Lesley Cordero](http://www.columbia.edu/~lc2958) and [ADI](ht
 - [3.0 Python vs R](#30-python-vs-r)
     + [3.1 Python](#31-python)
     + [3.2 R Programming](#32-r-programming)
+    + [3.3 Conclusion](33-conclusion)
 - [4.0 Tackling a Data Problem](#40-tackling-a-data-problem)
     + [4.1 Data Preparation](#41-data-preparation)
     + [4.2 Data Cleaning](#42-data-cleaning)
@@ -73,7 +74,9 @@ Data Science has so much potential! By using data in creative and innovative way
 
 ## 2.0 Data Science Process
 
-It might seem like people concentrate on the statistical concepts we use to tackle a data science problem. But the truth is that data Science is much more than the tools we use. It is the combined thought processes we engage with to come up with the best and most efficient solution to a data science problem.
+It might seem like data scientists concentrate on the statistical concepts to tackle a data science problem. But the truth is that data Science is much more than the tools we use. It is the combined thought processes we engage with to come up with the best and most efficient solution to a data science problem.
+
+You might have heard of the 80|20 rule in Economics? Data Science has its own version of the 80|20 rule, in that only 20% of your time as a data scientist is spent actually working on gaining insights from your data, whereas about 80% of it is spent managing, preparing, and cleaning the data.
 
 ### 2.1 What is a "Data Science" problem?
 
@@ -99,7 +102,7 @@ You might be wondering where this data comes from - well, it can come from a var
 
 ###2.4 Given Data
 
-The second, is you're given data and you have to work with it until you find something interesting.
+The second, is you're given data and you have to work with it until you find something interesting. If you figure out there's nothing interesting, move on a find a new project. It happens to the best of us.
 
 ## 3.0 Python vs R
 
@@ -114,6 +117,10 @@ If your data analysis needs integration with a web application or database, Pyth
 
 Meanwhile, if your data analysis demands standalone computing or exploratory work, R is a great choice because of its strong statistical support.
 
+### 3.3 Conclusion
+
+Depending on who you ask is the answer you'll get, but having a workflow that employs the strengths of both Python and R is the optimal strategy. As I've alluded to before, R is great for preliminary analysis, whereas Python is great for final use cases - final products.
+
 ## 4.0 Tackling a Data Problem
 
 So let's start our first data science problem! Here you'll find Jae's [course evaluations](http://www.cs.columbia.edu/~jae/3157/files/eval.pdf)
@@ -124,8 +131,7 @@ So let's start our first data science problem! Here you'll find Jae's [course ev
 So we begin by scraping the text off the pdf in R. R has a great package for scraping data from pdfs. 
 
 ``` R
-library(pdftool
-library(jsonlite)
+library(pdftool)
 download.file("http://www.cs.columbia.edu/~jae/3157/files/eval.pdf5.pdf, "eval.pdf", mode = "wb")
 
 eval <- pdf_text("eval.pdf")
@@ -209,4 +215,5 @@ There are no doubt hundred of ways to improve and extend this script, but it doe
 ## 5.0 Resources
 
 [Johns Hopkins Data Science Coursera](https://www.coursera.org/specializations/jhu-data-science) <br>
+[List of Public Datasets](https://github.com/caesar0301/awesome-public-datasets)<br>
 
