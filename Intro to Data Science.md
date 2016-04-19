@@ -51,6 +51,8 @@ package.install("pdftools")
 
 ```
 pip install nltk
+pip install seaborn 
+pip install diamonds
 ```
 
 ## 1.0 Background
@@ -108,16 +110,42 @@ The second, is you're given data and you have to work with it until you find som
 
 Python and R are two commonly used programming languages in the realm of data science. Some data scientists prefer R, others prefer R; regardless, both are useful programming languages to feel comfortable with if you're interested in Data Science. With that said, in this tutorial we'll highlight some differences and work with both of them through a small data science project.
 
+We'll go through a short visualization to showcase some differences.
+
 ### 3.1 Python
+
+```python
+from ggplot.exampledata import diamonds
+import seaborn as sns
+
+sns.set_style("white")
+sns.lmplot("carat", "price", col="cut", data=diamonds, order=2)
+```
 
 If your data analysis needs integration with a web application or database, Python is probably your best bet. Compared to R, the support for these sorts of application is much better since it's more of a general-purpose language.
 
 
 ### 3.2 R Programming
+ 
+Whereas in R, you can do the exact same thing with these lines of code:
+
+```R
+library(ggplot2)
+library(dplyr)
+data(diamonds)
+diamonds %>% 
+  ggplot(aes(x=carat,y=price)) + 
+  geom_point(alpha=0.5) +
+  facet_grid(~ cut) + 
+  stat_smooth(method = lm, formula = y ~ poly(x,2)) + 
+  theme_bw()
+```
 
 Meanwhile, if your data analysis demands standalone computing or exploratory work, R is a great choice because of its strong statistical support.
 
 ### 3.3 Conclusion
+
+As you can see, the visualizations in R are much better - they're more detailed and well done. While Python doesn't always underperform, R does do a phenomenal job at producing solid visualizations very easily.
 
 Depending on who you ask is the answer you'll get, but having a workflow that employs the strengths of both Python and R is the optimal strategy. As I've alluded to before, R is great for preliminary analysis, whereas Python is great for final use cases - final products.
 
@@ -186,7 +214,8 @@ for i in range(len(eval)-1):
 
 ### 4.3 Data Fun
 
-Finally, we get to the best part: finding insights on the data. 
+Finally, we get to the best part: finding insights on  the data. Here, python lets us know the frequencies of each word in the set of evaluations. 
+
 ```python
 from nltk.book import *
 import string, re
@@ -207,13 +236,17 @@ for index in range( len(tokens) ):
         print "%s [%s] %s" % (lhs, tokens[index], rhs)
 ```
 
-Finally we walk through the array of words, looking for our matches. If keyword matches the array element at the current index, we want to print out the matching word, surrounded by its context. We compute start and finish indices of the context explicitly to ensure we don’t ask for a negative index or one past the end of our array. Finally, we construct the left and right hand sides of the concordance, and print out the result using a simple template.
+Here, we walk through the array of words, looking  for matches. If keyword matches the array element at the current index, we print out the matching word, surrounded by its context. We compute start and finish indices of the context explicitly to ensure we don’t ask for a negative index or one past the end of our array. Finally, we construct the left and right hand sides of the concordance, and print out the result using a simple template.
 
-There are no doubt hundred of ways to improve and extend this script, but it does what it is meant to. So, on to more interesting tasks.
+There are no doubt hundred of ways to improve and extend this script, but for the purpose of this workshop, this should do! 
 
 
 ## 5.0 Resources
 
+If you liked any of what you saw, look below for more resources!
+
 [Johns Hopkins Data Science Coursera](https://www.coursera.org/specializations/jhu-data-science) <br>
 [List of Public Datasets](https://github.com/caesar0301/awesome-public-datasets)<br>
+[The Art of R Programming](https://www.dropbox.com/s/cr7mg2h20yzvbq3/The_Art_Of_R_Programming.pdf?dl=0)<br>
+[Python Data Visualization Cookbook](https://www.dropbox.com/s/iybhvjblkjymnw7/Python%20Data%20Visualization%20Cookbook%20-%20Milovanovic%2C%20Igor-signed.pdf?dl=0)<br>
 
