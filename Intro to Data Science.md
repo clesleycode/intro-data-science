@@ -46,13 +46,14 @@ Install [R](https://www.r-project.org/) and [R Studio](https://www.rstudio.com/p
 ### 0.3 Other
 
 ```
-package.install("pdftools")
+install.packages("pdftools”)
+install.packages(“ggplot2”) 
+install.packages("dplyr")
 ```
-
 ```
 pip install nltk
 pip install seaborn 
-pip install diamonds
+pip install diamods
 ```
 
 ## 1.0 Background
