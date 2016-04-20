@@ -160,9 +160,8 @@ So let's start our first data science problem! Here you'll find Jae's [course ev
 So we begin by scraping the text off the pdf in R. R has a great package for scraping data from pdfs. 
 
 ``` R
-library(pdftool)
-download.file("http://www.cs.columbia.edu/~jae/3157/files/eval.pdf5.pdf, "eval.pdf", mode = "wb")
-
+library(pdftools)
+download.file("http://www.cs.columbia.edu/~jae/3157/files/eval.pdf", "eval.pdf", mode = "wb”)_​
 eval <- pdf_text("eval.pdf")
 
 ```
