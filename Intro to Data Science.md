@@ -67,12 +67,15 @@ install.packages(“ggplot2”)
 install.packages("dplyr")
 ```
 
+Cool, now we're ready to start! 
+
 ## 1.0 Background
 
+So before we head into an actual data science problem demo, let's go over some vital background information in data science. 
 
 ### 1.1 What is Data Science?
 
-Data Science is the application of statistical and mathematical methods to problems involving, usually large, sets of data.
+Data Science is the application of statistical and mathematical methods to problems involving, usually large, sets of data. In other words, it's taking techniques developed in the areas of statistics and math and using them to learn from some sort of data source. 
 
 #### 1.1.1 What do you mean by data? 
 
@@ -80,7 +83,7 @@ Data is essentially anything that can be recorded/transcribed - numerical, text,
 
 ### 1.2  Is data science the same as machine learning?
 
-Well, no. They merely have overlap. Whereas the topic of machine learning involves lots of theoretical components we won't worry about, data science takes these methods and applies them to the real world. 
+Well, no. They do have overlap, but they are not the same! Whereas the topic of machine learning involves lots of theoretical components we won't worry about, data science takes these methods and applies them to the real world. It's important to note that studying these theoretical components can be very useful to your understanding of data science, however!
 
 ### 1.3 Why is Data Science important? 
 
