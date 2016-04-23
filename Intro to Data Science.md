@@ -6,8 +6,8 @@ Brought to you by [Lesley Cordero](http://www.columbia.edu/~lc2958) and [ADI](ht
 ## Table of Contents
 
 - [0.0 Setup](#00-setup)
-    + [0.1 Python & Pip](#01-python-pip)
-    + [0.2 R & R Studio](#02-r-r-studio)
+    + [0.1 Python & Pip](#01-python--pip)
+    + [0.2 R & R Studio](#02-r--r-studio)
     + [0.3 Other](#03-other)
 - [1.0 Background](#10-background)
     + [1.1 What is Data Science?](#11-what-is-data-science)
@@ -45,15 +45,26 @@ Install [R](https://www.r-project.org/) and [R Studio](https://www.rstudio.com/p
 
 ### 0.3 Other
 
+We'll soon get into the difference between packages in R and modules in Python. For now, let's install the ones we'll need for this tutorial. Open up your terminal and enter the following commands to install the needed python modules: 
+
+```
+pip install nltk
+pip install seaborn 
+pip install diamonds
+```
+
+Next, to install the R modules, cd into your workspace, and enter the following, very simple, command into your bash: 
+
+```
+R
+```
+
+This will prompt a session in R! From here, you can install any needed packages. For the sake of this tutorial, enter the following into your terminal R session:
+
 ```
 install.packages("pdftools”)
 install.packages(“ggplot2”) 
 install.packages("dplyr")
-```
-```
-pip install nltk
-pip install seaborn 
-pip install diamods
 ```
 
 ## 1.0 Background
