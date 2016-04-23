@@ -118,9 +118,14 @@ We'll go through a short visualization to showcase some differences.
 ```python
 from ggplot.exampledata import diamonds
 import seaborn as sns
+import matplotlib.pyplot as plt
 
 sns.set_style("white")
 sns.lmplot("carat", "price", col="cut", data=diamonds, order=2)
+```
+And as usual, to show the visualization, enter:
+``` python
+plt.show()
 ```
 
 If your data analysis needs integration with a web application or database, Python is probably your best bet. Compared to R, the support for these sorts of application is much better since it's more of a general-purpose language.
@@ -161,7 +166,7 @@ So we begin by scraping the text off the pdf in R. R has a great package for scr
 
 ``` R
 library(pdftools)
-download.file("http://www.cs.columbia.edu/~jae/3157/files/eval.pdf", "eval.pdf", mode = "wb”)_​
+download.file("http://www.cs.columbia.edu/~jae/3157/files/eval.pdf", "eval.pdf", mode = "wb”)
 eval <- pdf_text("eval.pdf")
 
 ```
@@ -184,7 +189,7 @@ Pretty neat, huh? Next, let's write all this data to textfiles.
 
 ``` R
 sink("evals.txt")
-sink(eval)
+sink(cat(eval))
 ```
 
 For sake of working both with R and Python, let's start coding in python. First, let's retreive the data from the file and reconstruct our dictionary data type.
