@@ -199,20 +199,12 @@ cat(eval[2])
 
 There's page 2! 
 
-Pretty neat, huh? Next, let's write all this data to textfiles.
+Pretty neat, huh? 
 
 ``` R
-sink("evals.txt")
-sink(cat(eval))
-```
-
-For sake of working both with R and Python, let's start coding in python. First, let's retreive the data from the file and reconstruct our dictionary data type.
-
-``` python
-pair = {'name': name,'location': location}
-with open('./evals.txt', 'a') as f:
-     f.writelines('{}:{}'.format(k,v) for k, v in pair.items())
-     f.write('\n')
+for (i in eval) {
+    print(strsplit(i,"\n"))
+}
 ```
 
 ### 4.2 Data Cleaning
