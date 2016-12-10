@@ -27,13 +27,13 @@ Brought to you by [Lesley Cordero](http://www.columbia.edu/~lc2958) and [ADI](ht
 - [4.0 Tackling a Data Problem](#40-tackling-a-data-problem)
     + [4.1 Data Preparation](#41-data-preparation)
     + [4.2 Data Cleaning](#42-data-cleaning)
-    + [4.3 Data Fun](#43-data-fun)
+    + [4.3 Data Analysis](#43-data-analysis)
 - [5.0 Resources](#50-resources)
 
 
 ## 0.0 Setup
 
-This guide was written in Python 2.7 and R 3.2.3.
+This guide was written in Python 3.5 and R 3.2.3.
 
 ### 0.1 Python & Pip
 
@@ -53,7 +53,7 @@ pip install seaborn
 pip install diamonds
 ```
 
-Next, to install the R modules, cd into your workspace, and enter the following, very simple, command into your bash: 
+Next, to install the R packages, cd into your workspace, and enter the following, very simple, command into your bash: 
 
 ```
 R
@@ -71,17 +71,21 @@ Cool, now we're ready to start!
 
 ## 1.0 Background
 
-So before we head into an actual data science problem demo, let's go over some vital background information in data science. 
+Before we head into an actual data science problem demo, let's go over some vital background information. 
 
 ### 1.1 What is Data Science?
 
-Data Science is the application of statistical and mathematical methods to problems involving, usually large, sets of data. In other words, it's taking techniques developed in the areas of statistics and math and using them to learn from some sort of data source. 
+Data Science is the application of statistical and mathematical methods to problems involving sets of data. In other words, it's taking techniques developed in the areas of statistics and math and using them to learn from some sort of data source. 
 
 #### 1.1.1 What do you mean by data? 
 
-Data is essentially anything that can be recorded/transcribed - numerical, text, images, sounds, anything! 
+Data is essentially anything that can be recorded or transcribed - numerical, text, images, sounds, anything!
 
-### 1.2  Is data science the same as machine learning?
+#### 1.1.2 What background do you need to work on a data science problem?
+
+It depends entirely on what you're working on, but generally speaking, you should be comfortable with probability, statistics, and some linear algebra.  
+
+### 1.2 Is data science the same as machine learning?
 
 Well, no. They do have overlap, but they are not the same! Whereas the topic of machine learning involves lots of theoretical components we won't worry about, data science takes these methods and applies them to the real world. It's important to note that studying these theoretical components can be very useful to your understanding of data science, however!
 
@@ -89,9 +93,19 @@ Well, no. They do have overlap, but they are not the same! Whereas the topic of 
 
 Data Science has so much potential! By using data in creative and innovative ways, we can gain a lot of insight on the world, whether that be in economics, biology, sociology, math - any topic you can think of, data science has its role. 
 
+
+### 1.4 Data Roles
+
+#### 1.4.1 Data Scientist
+
+#### 1.4.2 Data Engineer
+
+#### 1.4.3 Data Analyst
+
+
 ## 2.0 Data Science Process
 
-It might seem like data scientists concentrate on the statistical concepts to tackle a data science problem. But the truth is that data Science is much more than the tools we use. It is the combined thought processes we engage with to come up with the best and most efficient solution to a data science problem.
+It might seem like data scientists concentrate on the statistical concepts to tackle a data science problem. But the truth is that Data Science is much more than the tools we use. It is the combined thought processes we engage with to come up with the best and most efficient solution to a data science problem.
 
 You might have heard of the 80|20 rule in Economics? Data Science has its own version of the 80|20 rule, in that only 20% of your time as a data scientist is spent actually working on gaining insights from your data, whereas about 80% of it is spent managing, preparing, and cleaning the data.
 
@@ -109,74 +123,48 @@ The first is you're given a problem (or you think of one yourself), and you have
 
 These are all questions you should be asking yourself when first starting a data science project: <b> Where will my data come from?</b>
 
-One glorious thing about Data Science is<b> O P E N  D A T A </b>
+One glorious thing about Data Science is<b> Open Data </b>.
 
 #### 2.3.1 Open Data
 
-What's open data, you ask? Simple, it's data that's freely  for anyone to use! Some examples include things you might have already heard of, like APIs, online zip files (yum), or by scraping data!
+What's open data, you ask? Simple, it's data that's freely  for anyone to use! Some examples include things you might have already heard of, like APIs, online zip files, or by scraping data!
 
 You might be wondering where this data comes from - well, it can come from a variety of sources, but some common ones include large tech companies like Facebook, Google, Instagram. Others include large institutions, like the US government! Otherwise, you can find tons of data from all sorts of organizations and individuals. 
 
-###2.4 Given Data
+### 2.4 Given Data
 
 The second, is you're given data and you have to work with it until you find something interesting. If you figure out there's nothing interesting, move on a find a new project. It happens to the best of us.
 
-## 3.0 Python vs R
 
-Python and R are two commonly used programming languages in the realm of data science. Some data scientists prefer R, others prefer R; regardless, both are useful programming languages to feel comfortable with if you're interested in Data Science. With that said, in this tutorial we'll highlight some differences and work with both of them through a small data science project.
+## 3.0 Important Concepts
 
-We'll go through a short visualization to showcase some differences.
+### 3.1 Machine Learning
 
-### 3.1 Python
+Generally speaking, Machine Learning can be split into three types of learning: supervised, unsupervised, and reinforcement learning. 
 
-```python
-from ggplot.exampledata import diamonds
-import seaborn as sns
-import matplotlib.pyplot as plt
+#### 3.1.1 Supervised Learning
 
-sns.set_style("white")
-sns.lmplot("carat", "price", col="cut", data=diamonds, order=2)
-```
-And as usual, to show the visualization, enter:
-``` python
-plt.show()
-```
-
-If your data analysis needs integration with a web application or database, Python is probably your best bet. Compared to R, the support for these sorts of application is much better since it's more of a general-purpose language.
+This algorithm consist of a target / outcome variable (or dependent variable) which is to be predicted from a given set of predictors (independent variables). Using these set of variables, we generate a function that map inputs to desired outputs. The training process continues until the model achieves a desired level of accuracy on the training data. Examples of Supervised Learning: Regression, Decision Tree, Random Forest, KNN, Logistic Regression etc.
 
 
-### 3.2 R Programming
- 
-Whereas in R, you can do the exact same thing with these lines of code:
+#### 3.1.2 Unsupervised Learning
 
-```R
-library(ggplot2)
-library(dplyr)
-data(diamonds)
-diamonds %>% 
-  ggplot(aes(x=carat,y=price)) + 
-  geom_point(alpha=0.5) +
-  facet_grid(~ cut) + 
-  stat_smooth(method = lm, formula = y ~ poly(x,2)) + 
-  theme_bw()
-```
+In this algorithm, we do not have any target or outcome variable to predict / estimate.  It is used for clustering population in different groups, which is widely used for segmenting customers in different groups for specific intervention. Examples of Unsupervised Learning: Apriori algorithm, K-means.
 
-Meanwhile, if your data analysis demands standalone computing or exploratory work, R is a great choice because of its strong statistical support.
 
-### 3.3 Conclusion
+#### 3.1.2 Reinforcement Learning
 
-As you can see, the visualizations in R are much better - they're more detailed and well done. While Python doesn't always underperform, R does do a phenomenal job at producing solid visualizations very easily.
+Using this algorithm, the machine is trained to make specific decisions. It works this way: the machine is exposed to an environment where it trains itself continually using trial and error. This machine learns from past experience and tries to capture the best possible knowledge to make accurate business decisions. Example of Reinforcement Learning: Markov Decision Process
 
-Depending on who you ask is the answer you'll get, but having a workflow that employs the strengths of both Python and R is the optimal strategy. As I've alluded to before, R is great for preliminary analysis, whereas Python is great for final use cases - final products.
-
-## 4.0 Tackling a Data Problem
-
-So let's start our first data science problem! Here you'll find Jae's [course evaluations](http://www.cs.columbia.edu/~jae/3157/files/eval.pdf)
-
+## 4.0 Tackling a Data Problem 
 
 ### 4.1 Data Preparation
 
-So we begin by scraping the text off the pdf in R. R has a great package for scraping data from pdfs. 
+As you can see, this data is in the form of a PDF, an incredibly source of data. How would you go about getting this data? Scraping it. 
+
+This highlights an important obstacle in the data science process. Very often, your data might not be so easily accessible. If you're lucky, an API exists or it's in the form of a spreadsheet. But sometimes, you might be given something you have to work to get the data from. This is an example of one of those not so easy cases. 
+
+So we'll begin by scraping the text off this PDF in R, which has a great package for scraping data from pdfs (pdftools). 
 
 ``` R
 library(pdftools)
@@ -209,23 +197,53 @@ for (i in eval) {
 
 ### 4.2 Data Cleaning
 
-Now let's start cleaning the data. 
+Now we move onto the data cleaning portion of this tutorial. Not only might you have to scrape data off a website or pdf, but then your data might be in a completely different format than you wished. This is especially important when handling non-numerical data.
 
-``` python
-for i in range(len(eval)-1):
-    dict[i].split('\n')
+Consider a dataset consisting of text. There are a lot ways in which you might need to clean this data so that you're able to use it for future modeling or prediction. 
+
+```
+original_tweet = "I luv my &lt;3 iphone &amp; you’re awsm apple. DisplayIsAwesome, sooo happppppy http://www.apple.com"
+
 ```
 
+HTMLParser is a Python module that allows you to convert entities to standard symbols. In the example above, &lt; and &amp; should really be < and &. 
+
 ``` python
-n = 0
-for i in range(len(eval)-1):
-    if n < 7:
-    eval.pop(eval[i])
+import HTMLParser
+html_parser = HTMLParser.HTMLParser()
+tweet = original_tweet.decode("utf8")
+tweet = html_parser.unescape(tweet)
 ```
 
-### 4.3 Data Fun
+Now we've got:
 
-Finally, we get to the best part: finding insights on  the data. Here, python lets us know the frequencies of each word in the set of evaluations. 
+```
+u'I luv my <3 iphone & you\u2019re awsm apple. DisplayIsAwesome, sooo happppppy http://www.apple.com'
+```
+
+ Sometimes words aren't in proper formats though. “I looooveee you” should be “I love you”, but we can use simple rules and regular expressions to fix these cases!
+
+```python
+tweet = ''.join(''.join(s)[:2] for _, s in itertools.groupby(tweet))
+
+```
+
+Now we get: 
+
+``` python
+u'I luv my <3 iphone & you\u2019re awsm apple. DisplayIsAwesome, soo happy http://ww.apple.com'
+```
+
+The list goes on on all the possible ways in which you can clean your data. Consider spelling mistakes, grammar issues, etc!
+
+
+### 4.3 Data Analysis
+
+#### 4.3.1 Basics
+
+At a very basic level, you can get different numerical results from your text. You can count the number of verbs, the number of nouns, etc. You can also very easily count the number of words in your text and the frequency of each word.
+
+Like this: 
 
 ```python
 from nltk.book import *
@@ -234,22 +252,19 @@ import string, re
 fdist1 = FreqDist(text1)
 ```
 
-```
-tokens = text.split() # split on whitespace
-keyword = re.compile(target, re.IGNORECASE)
+From here, we'll move the different areas supported by Programming Languages. 
 
-for index in range( len(tokens) ):
-    if keyword.match( tokens[index] ):
-        start = max(0, index-window)
-        finish = min(len(tokens), index+window+1)
-        lhs = string.join( tokens[start:index] )
-        rhs = string.join( tokens[index+1:finish] )
-        print "%s [%s] %s" % (lhs, tokens[index], rhs)
-```
+4.3.2 Time Series Analysis 
 
-Here, we walk through the array of words, looking  for matches. If keyword matches the array element at the current index, we print out the matching word, surrounded by its context. We compute start and finish indices of the context explicitly to ensure we don’t ask for a negative index or one past the end of our array. Finally, we construct the left and right hand sides of the concordance, and print out the result using a simple template.
+[Time Series Datasets](https://datamarket.com/data/list/?q=provider:tsdl)
 
-There are no doubt hundred of ways to improve and extend this script, but for the purpose of this workshop, this should do! 
+4.3.3 Deep Learning
+
+[Detexify](http://detexify.kirelabs.org/classify.html)
+
+4.3.4 Natural Language Processing
+
+[Google Translate](https://translate.google.com/)
 
 
 ## 5.0 Resources
