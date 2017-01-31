@@ -59,9 +59,12 @@ Install [R](https://www.r-project.org/) and [R Studio](https://www.rstudio.com/p
 We'll soon get into the difference between packages in R and modules in Python. For now, let's install the ones we'll need for this tutorial. Open up your terminal and enter the following commands to install the needed python modules: 
 
 ```
-pip install ggplot
-pip install nltk
-pip install seaborn 
+pip3 install ggplot
+pip3 install nltk
+pip3 install itertools
+pip3 install HTMLParser
+pip3 install BeautifulSoup
+pip3 install requests
 ```
 
 Next, to install the R packages, cd into your workspace, and enter the following, very simple, command into your bash: 
@@ -73,9 +76,9 @@ R
 This will prompt a session in R! From here, you can install any needed packages. For the sake of this tutorial, enter the following into your terminal R session:
 
 ```
-install.packages("pdftools”)
-install.packages(“ggplot2”) 
-install.packages("dplyr")
+install.packages("pdftools)
+install.packages(ggvis) 
+install.packages("heatmaply")
 ```
 
 ### 0.4 Virtual Environment
@@ -143,16 +146,13 @@ Data Scientists require the highest level of specialty. It requires a high level
 
 This section would vary depending on your choice of main tools you choose for data mining. There are generally three languages used in Data Science:
 
-- R: R along with all the key libraries. RStudio is a good choice of environment.
-- Python: iPython notebooks, Dato (Graphlab), vowpal-wabbit, import.io are some interesting additional libraries apart from other scientific libraries.
-- SAS: Base SAS along with Enterprise Guide (for GUI driven interface) and Enterprise Miner and the modules depending on the license you have. It also offers TextMiner / JMP and a lot of industry specific modules.
-
+- R: R is great for statistical analysis. It has a high range of libraries very useful for different aspects of data science. 
+- Python: Python is a dynamic language commonly used in the area of Data Science. 
+- SAS: SAS (Statistical Analysis System) is a software suite developed for advanced analytics, multivariate analyses, business intelligence, data management, and predictive analytics.
 
 ## 2.0 Data Science Process
 
-It might seem like data scientists concentrate on the statistical concepts to tackle a data science problem. But the truth is that Data Science is much more than the tools we use. It is the combined thought processes we engage with to come up with the best and most efficient solution to a data science problem.
-
-You might have heard of the 80|20 rule in Economics? Data Science has its own version of the 80|20 rule, in that only 20% of your time as a data scientist is spent actually working on gaining insights from your data, whereas about 80% of it is spent managing, preparing, and cleaning the data.
+It might seem like data scientists concentrate on the statistical concepts to tackle a data science problem. But the reality is that the majority of data scientists' time is spect on data acquisition, preparation, and cleaning.
 
 ### 2.1 What is a "Data Science" problem?
 
@@ -168,12 +168,11 @@ The first is you're given a problem (or you think of one yourself), and you have
 
 These are all questions you should be asking yourself when first starting a data science project: <b> Where will my data come from?</b>
 
-One glorious thing about Data Science is<b> Open Data </b>, which you'll learn more about in section 3. 
+One glorious thing about Data Science is<b> Open Data </b>, which you'll learn more about later. 
 
 ### 2.4 Given Data
 
-The second, is you're given data and you have to work with it until you find something interesting. If you figure out there's nothing interesting, move on a find a new project. It happens to the best of us.
-
+The second is you're given data and you have to work with it until you find something interesting. If you figure out there's nothing interesting, move on a find a new project.
 
 ## 3.0 Important Concepts
 
@@ -221,11 +220,157 @@ Underfitting, on the other hand, is when your model is <i>too</i> generalized to
 
 ## 4.0 Tackling a Data Problem 
 
-### 4.1 Data Preparation
+### 4.1 Data Acquisition
 
-As you can see, this data is in the form of a PDF, an incredibly source of data. How would you go about getting this data? Scraping it. 
+Data Acquisition will always be the first step. It's the part of the process that asks "where is my data coming from?" There are many ways to grab your data - APIs, webscraping, zipfiles, etc, but in this tutorial, we'll go through a web scraping example. 
 
-This highlights an important obstacle in the data science process. Very often, your data might not be so easily accessible. If you're lucky, an API exists or it's in the form of a spreadsheet. But sometimes, you might be given something you have to work to get the data from. This is an example of one of those not so easy cases. 
+Web Scraping tools are specifically developed for extracting information from websites. Web Scraping mostly focuses on the transformation of unstructured data (HTML format) on the web into structured data (database or spreadsheet).
+
+#### 4.1.1 HTML 
+While performing web scraping, we deal with html tags. Thus, we must have good understanding of them. Below is the basic syntax of HTML:
+
+``` html
+<!DOCTYPE html> 
+<html>
+    <body>
+        <h1> First Heading </h1>
+        <p> First Paragraph </p>
+    </body>
+</html>
+```
+Let's break down each of these tags:
+
+1. `<!DOCTYPE html>`: This is the initial HTML declaration.
+2. `<html>`: The HTML document is going to be contained within this tag.
+3. `<body>`: This is where the visible portion of the HTML document is between. 
+4. `<h1>`: This is an HTML heading.
+5. `<p>`: HTML paragraphs are defined here. 
+
+We've also got the following tags:
+1. `<a>`: These always define HTML links, such as with 
+``` HTML
+<a href="http://byteacademy.co">This is Byte Academy's website!</a>
+```
+2. `<table>`: HTML tables are defined with this tag, such as:
+*Note that the `<tr>`are rows and `<td>` defines columns. 
+``` HTML
+<table style="width:100%">
+    <tr>
+        <td>Lesley</td>
+        <td>Cordero</td>
+        <td>24</td>
+    </tr>
+    <tr>
+        <td>Helen</td>
+        <td>Chen</td>
+        <td>22</td>
+    </tr>
+</table>
+```
+This will yield the following:
+```
+Lesley      Cordero     24
+Helen       Chen        22
+```
+3. `<li>` initializes the beginning of a list. `<ul>` and `<ol>` each define whether it's an unordered list or an ordered list. 
+
+
+#### 4.1.2 BeautifulSoup
+
+BeautifulSoup is used to parse the data.
+
+``` python
+import requests
+from bs4 import BeautifulSoup
+```
+
+``` python
+wiki = "https://en.wikipedia.org/wiki/List_of_states_and_territories_of_the_United_States"
+page = requests.get(wiki)
+html = page.content
+```
+
+``` python
+soup = BeautifulSoup(html)
+```
+
+Now, let's explore this webpage! 
+
+``` python
+soup.title
+```
+This outputs the title of the wikipedia page: 
+```
+<title>List of states and territories of the United States - Wikipedia</title>
+```
+
+The string version of this can be obtained with:
+
+``` python
+soup.title.string
+```
+With `soup.a`, we can output the links under the `<a>` tag. We get the following:
+```
+<a id="top"></a>
+```
+
+But this only allows us to have one output. If we want to extract all the links within `<a>`, we will use `find_all()`, as the following:
+``` python
+all_links = soup.find_all("a")
+for i in all_links:
+    print(i.get("href"))
+```
+
+Since we're looking for the capital of each state, let's use `find_all` to retrieve the table tags:
+``` python
+all_tables = soup.find_all('table')
+```
+
+Now we have to identify the right table. We filter this by figuring out what the attribute class name is. In chrome, you can check the class name by right click on the table of web page. Then you click "Inspect" and copy the class name. You also go through the output of above command find the class name of right table.
+
+``` python
+right_table=soup.find('table', class_='wikitable sortable plainrowheaders')
+```
+
+And finally, we have scraped all the needed information. 
+
+### 4.2 Data Preparation
+
+#### 4.2.1 Pandas DataFrame
+
+Once you have all your dataset, the next step will likely be data preparation. In the previous example, we'll be storing it to a pandas DataFrame.
+
+We're now going to begin by storing the data from the website. We'll grab the first few columns, so we'll initialize a list for each of these here:
+
+``` python
+A=[]
+B=[]
+C=[]
+```
+Next, is to actually grab the needed data and add it to each list. We iterate through the scraped data, row by row:
+
+``` python
+for row in right_table.findAll("tr"):
+    cells = row.findAll('td')
+    states=row.findAll('th') 
+    print(row)
+    if len(cells) == 9 or len(cells) == 8: 
+        A.append(cells[0].find(text=True))
+        B.append(states[0].find(text=True))
+        C.append(cells[1].find(text=True))
+```
+Here, we actually create the DataFrame with pandas: 
+
+``` python
+import pandas as pd
+df=pd.DataFrame(A,columns=['Number'])
+df['State/UT']=B
+df['Admin_Capital']=C
+```
+
+#### 4.2.2 PDFtools
+
+Very often, your data might not be so easily accessible. If you're lucky, an API exists or it's in the form of a spreadsheet. But sometimes, you might be given something you have to work to get the data from. In the following example, we'll be working with data off a pdf. 
 
 So we'll begin by scraping the text off this PDF in R, which has a great package for scraping data from pdfs (pdftools). 
 
@@ -257,7 +402,7 @@ for (i in eval) {
 }
 ```
 
-### 4.2 Data Cleaning
+### 4.3 Data Cleaning
 
 Now we move onto the data cleaning portion of this tutorial. Not only might you have to scrape data off a website or pdf, but then your data might be in a completely different format than you wished. This is especially important when handling non-numerical data.
 
@@ -265,43 +410,51 @@ Consider a dataset consisting of text. There are a lot ways in which you might n
 
 ```
 original_tweet = "I luv my &lt;3 iphone &amp; you’re awsm apple. DisplayIsAwesome, sooo happppppy http://www.apple.com"
-
 ```
 
 HTMLParser is a Python module that allows you to convert entities to standard symbols. In the example above, &lt; and &amp; should really be < and &. 
 
 ``` python
-import HTMLParser
-html_parser = HTMLParser.HTMLParser()
-tweet = original_tweet.decode("utf8")
-tweet = html_parser.unescape(tweet)
+from html.parser import HTMLParser
+html_parser = HTMLParser()
+tweet = html_parser.unescape(original_tweet)
 ```
 
 Now we've got:
 
 ```
-u'I luv my <3 iphone & you\u2019re awsm apple. DisplayIsAwesome, sooo happppppy http://www.apple.com'
+'I luv my <3 iphone & you’re awsm apple. DisplayIsAwesome, sooo happppppy http://www.apple.com'
 ```
 
  Sometimes words aren't in proper formats though. “I looooveee you” should be “I love you”, but we can use simple rules and regular expressions to fix these cases!
 
 ```python
+import itertools
 tweet = ''.join(''.join(s)[:2] for _, s in itertools.groupby(tweet))
 ```
 
 Now we get: 
 
 ``` python
-u'I luv my <3 iphone & you\u2019re awsm apple. DisplayIsAwesome, soo happy http://ww.apple.com'
+'I luv my <3 iphone & you’re awsm apple. DisplayIsAwesome, soo happy http://ww.apple.com'
 ```
 
 The list goes on on all the possible ways in which you can clean your data. Consider spelling mistakes, grammar issues, etc!
 
+### 4.4 Data Visualization 
 
-### 4.3 Data Visualization 
+Data Visualization is an import aspect of data science. It allows us to showcase the work we've done through visualizations, which can be stagnant or interactive. 
 
-#### 4.3.1 Python Modules
+#### 4.4.1 Python Modules
 
+[matplotlib](http://matplotlib.org/) is a 2D python plotting library which allows you to generate plots, histograms, power spectra, bar charts, errorcharts, scatterplots, etc, with just a few lines of code.
+
+``` python
+import matplotlib.pyplot as plt
+plt.plot([1,2,3,4], [1,4,9,16], 'ro')
+plt.axis([0, 6, 0, 20])
+plt.show()
+```
 
 [bokeh](http://bokeh.pydata.org/en/latest/) is an interactive visualization library for modern web browsers presentation. 
 
@@ -315,28 +468,38 @@ ggplot(aes(x='date', y='beef'), data=meat) +\
     stat_smooth(colour='blue', span=0.2)
 ```
 
-[matplotlib](http://matplotlib.org/) is a 2D python plotting library which allows you to generate plots, histograms, power spectra, bar charts, errorcharts, scatterplots, etc, with just a few lines of code.
-
-[pygal](http://pygal.org/en/stable/) is a charting library that includes bar charts, line charts, XY charts, pie charts, radar charts, dot charts, pyramid charts, funnel charts, gauge charts. It also includes css features with pre-defined themes.
-
-[python-igraph](https://pypi.python.org/pypi/python-igraph) is a collection of network analysis tools with the emphasis on efficiency, portability, and ease of use. 
-
 [seaborn](http://seaborn.pydata.org/introduction.html#introduction) is a library for making statistical graphics in Python. It's built on top of matplotlib and is tightly integrated with the PyData stack, including support for numpy and pandas data structures and statistical routines from scipy and statsmodels. 
-- seaborn allows you to choose color palettes to make plots that reveal patterns in your data. 
-- seaborn contains functions for visualizing univariate and bivariate distributions.
-- seaborn offers tools that fit and visualize linear regression models for different kinds of independent and dependent variables.
-- seaborn contains functions that visualize matrices of data and use clustering algorithms to discover structures in those matrices.
-- seaborn offers a function to plot statistical timeseries data.
 
+#### 4.4.2 R Packages
 
+[ggvis](http://ggvis.rstudio.com/) allows you to visualize interactive plots from the makers of ggplot2.
 
-#### 4.3.2 R Packages
+``` python
+library(ggvis)
+iris %>% ggvis(~Petal.Length, ~Petal.Width, fill = ~Species) %>% layer_points()
+```
 
-### 4.4 Data Analysis
+[ggplot2](http://www.statmethods.net/advgraphs/ggplot2.html) is one of the best static visualization packages in R. 
 
-#### 4.4.1 Basics
+[heatmaply](https://mran.revolutionanalytics.com/package/heatmaply/) produces interactive heatmaps.
 
-At a very basic level, you can get different numerical results from your text. You can count the number of verbs, the number of nouns, etc. You can also very easily count the number of words in your text and the frequency of each word.
+``` python
+library(heatmaply)
+heatmaply(cor(mtcars), 
+k_col = 2, k_row = 2,
+limits = c(-1,1)) %>% 
+layout(margin = list(l = 40, b = 40))
+```
+
+[plotly](https://plot.ly/r/) allows you to convert ggplot2 figures to interactive plots easily.
+
+### 4.5 Data Analysis
+
+And of course, we have the analysis portion. We won't go into too many details, but we'll go over some basics.
+
+#### 4.5.1 Basics
+
+At a very basic level, you can get different numerical results from your text. You can count the number of verbs, the number of nouns, etc. You can also easily count the number of words in your text and the frequency of each word.
 
 Like this: 
 
@@ -347,26 +510,25 @@ import string, re
 fdist1 = FreqDist(text1)
 ```
 
-From here, we'll move the different areas supported by Programming Languages. 
+From here, we'll move into the different areas supported by Programming Languages. 
 
-4.4.2 Time Series Analysis 
+#### 4.5.2 Time Series Analysis 
 
 Time Series Analysis includes methods for analyzing time series data to extract meaningful statistics and characteristics. 
 
 [Time Series Datasets](https://datamarket.com/data/list/?q=provider:tsdl)
 
-4.4.3 Deep Learning
+#### 4.5.3 Deep Learning
 
-Deep Learning is a branch of machine learning that involves pattern recognition on unlabeled and unstructured data. and uses a model of computing inspired by the structure of the brain. Hence we call this model a neural network. The basic foundational unit of a neural network is the neuron, which is actually conceptually quite simple. 
+Deep Learning is a branch of machine learning that involves pattern recognition on unlabeled and unstructured data. and uses a model of computing inspired by the structure of the brain. Hence we call this model a neural network. 
 
 [Detexify](http://detexify.kirelabs.org/classify.html)
 
-4.4.4 Natural Language Processing
+#### 4.5.4 Natural Language Processing
 
 Natural Language Processing, or NLP, is an area of computer science that focuses on developing techniques to produce machine-driven analyses of text.
 
 [Google Translate](https://translate.google.com/)
-
 
 ## 5.0 Final Words
 
@@ -380,13 +542,12 @@ If you liked any of what you saw, look below for more resources!
 [Python Data Visualization Cookbook](https://www.dropbox.com/s/iybhvjblkjymnw7/Python%20Data%20Visualization%20Cookbook%20-%20Milovanovic%2C%20Igor-signed.pdf?dl=0)<br>
 
 
-
 ### 5.2 Mini Courses
 
 Learn about courses [here](www.byteacademy.co/all-courses/data-science-mini-courses/).
 
-[Python 101: Data Science Prep](https://www.eventbrite.com/e/python-101-data-science-prep-tickets-30980459388) <br>
-[Intro to Data Science & Stats with R](https://www.eventbrite.com/e/data-sci-109-intro-to-data-science-statistics-using-r-tickets-30908877284) <br>
+[Python 101: Data Science Prep](https://www.eventbrite.com/myevent?eid=31375137882) <br>
+[Intro to Data Science & Stats with R](https://www.eventbrite.com/e/data-sci-109-intro-to-data-science-statistics-using-r-tickets-31375339485) <br>
 [Data Acquisition Using Python & R](https://www.eventbrite.com/e/data-sci-203-data-acquisition-using-python-r-tickets-30980705123) <br>
 [Data Visualization with Python](https://www.eventbrite.com/e/data-sci-201-data-visualization-with-python-tickets-30980827489) <br>
 [Fundamentals of Machine Learning and Regression Analysis](https://www.eventbrite.com/e/data-sci-209-fundamentals-of-machine-learning-and-regression-analysis-tickets-30980917759) <br>
