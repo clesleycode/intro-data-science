@@ -15,9 +15,9 @@ Brought to you by [Lesley Cordero](http://www.columbia.edu/~lc2958) and [ADI](ht
     + [1.2 Is data science the same as machine learning?](#12-is-data-science-the-same-as-machine-learning)
     + [1.3 Why is Data Science important?](#13-why-is-data-science-important)
     + [1.4 Data Roles](#14-data-roles)
-        * [1.4.1 Data Scientist](#141-data-scientist)
+        * [1.4.1 Data Analysis](#141-data-analyst)
         * [1.4.2 Data Engineer](#142-data-engineer)
-        * [1.4.3 Data Analyst](#143-data-analyst)
+        * [1.4.3 Data Scientist](#143-data-scientist)
 - [2.0 Data Science Process](#20-data-science-process)
     + [2.1 What is a "Data Science" Problem?](#21-what-is-a-data-science-problem)
     + [2.2 ...So where do I begin?](#22-so-where-do-i-begin)
@@ -33,11 +33,13 @@ Brought to you by [Lesley Cordero](http://www.columbia.edu/~lc2958) and [ADI](ht
     + [4.1 Data Preparation](#41-data-preparation)
     + [4.2 Data Cleaning](#42-data-cleaning)
     + [4.3 Data Analysis](#43-data-analysis)
-        * [4.3.1 Basics](#431-basics)
-        * [4.3.2 Time Series Analysis](#432-time-series-analysis)
-        * [4.3.3 Deep Learning](#433-deep-learning)
-        * [4.3.4 Natural Language Processing](#434-natural-language-processing)
-- [5.0 Resources](#50-resources)
+        * [4.4.1 Basics](#431-basics)
+        * [4.4.2 Time Series Analysis](#432-time-series-analysis)
+        * [4.4.3 Deep Learning](#433-deep-learning)
+        * [4.4.4 Natural Language Processing](#434-natural-language-processing)
+- [5.0 Final Words](#50-final-words)
+    + [5.1 Resources](#51-resources)
+    + [5.2 Mini Courses](#52-mini-courses)
 
 
 ## 0.0 Setup
@@ -57,9 +59,9 @@ Install [R](https://www.r-project.org/) and [R Studio](https://www.rstudio.com/p
 We'll soon get into the difference between packages in R and modules in Python. For now, let's install the ones we'll need for this tutorial. Open up your terminal and enter the following commands to install the needed python modules: 
 
 ```
+pip install ggplot
 pip install nltk
 pip install seaborn 
-pip install diamonds
 ```
 
 Next, to install the R packages, cd into your workspace, and enter the following, very simple, command into your bash: 
@@ -75,6 +77,26 @@ install.packages("pdftools”)
 install.packages(“ggplot2”) 
 install.packages("dplyr")
 ```
+
+### 0.4 Virtual Environment
+
+If you'd like to work in a virtual environment, you can set it up as follows: 
+```
+pip3 install virtualenv
+virtualenv your_env
+```
+And then launch it with: 
+```
+source your_env/bin/activate
+```
+
+To execute the visualizations in matplotlib, do the following:
+
+```
+cd ~/.matplotlib
+nano matplotlibrc
+```
+And then, write `backend: TkAgg` in the file. Now you should be set up with your virtual environment!
 
 Cool, now we're ready to start! 
 
@@ -105,11 +127,25 @@ Data Science has so much potential! By using data in creative and innovative way
 
 ### 1.4 Data Roles
 
-#### 1.4.1 Data Scientist
+#### 1.4.1 Data Analyst
+
+Data Analysts have a high range in role differences. They include analysts who focus on excel as well as engineers who code analytics with Python or R.    
 
 #### 1.4.2 Data Engineer
 
-#### 1.4.3 Data Analyst
+Data Engineers are similar to your typical software engineering roles, but with a specialty in data science processes. 
+
+#### 1.4.3 Data Scientist
+
+Data Scientists require the highest level of specialty. It requires a high level of programming and statistic skills. 
+
+### 1.5 Software
+
+This section would vary depending on your choice of main tools you choose for data mining. There are generally three languages used in Data Science:
+
+- R: R along with all the key libraries. RStudio is a good choice of environment.
+- Python: iPython notebooks, Dato (Graphlab), vowpal-wabbit, import.io are some interesting additional libraries apart from other scientific libraries.
+- SAS: Base SAS along with Enterprise Guide (for GUI driven interface) and Enterprise Miner and the modules depending on the license you have. It also offers TextMiner / JMP and a lot of industry specific modules.
 
 
 ## 2.0 Data Science Process
@@ -132,13 +168,7 @@ The first is you're given a problem (or you think of one yourself), and you have
 
 These are all questions you should be asking yourself when first starting a data science project: <b> Where will my data come from?</b>
 
-One glorious thing about Data Science is<b> Open Data </b>.
-
-#### 2.3.1 Open Data
-
-What's open data, you ask? Simple, it's data that's freely  for anyone to use! Some examples include things you might have already heard of, like APIs, online zip files, or by scraping data!
-
-You might be wondering where this data comes from - well, it can come from a variety of sources, but some common ones include large tech companies like Facebook, Google, Instagram. Others include large institutions, like the US government! Otherwise, you can find tons of data from all sorts of organizations and individuals. 
+One glorious thing about Data Science is<b> Open Data </b>, which you'll learn more about in section 3. 
 
 ### 2.4 Given Data
 
@@ -163,7 +193,31 @@ In this algorithm, we do not have any target or outcome variable to predict / es
 
 #### 3.1.2 Reinforcement Learning
 
-Using this algorithm, the machine is trained to make specific decisions. It works this way: the machine is exposed to an environment where it trains itself continually using trial and error. This machine learns from past experience and tries to capture the best possible knowledge to make accurate business decisions. Example of Reinforcement Learning: Markov Decision Process
+Using this algorithm, the machine is trained to make specific decisions. It works this way: the machine is exposed to an environment where it trains itself continually using trial and error. This machine learns from past experience and tries to capture the best possible knowledge to make accurate business decisions. Example of Reinforcement Learning: Markov Decision Process.
+
+
+### 3.2 Data 
+
+As a data scientist, knowing the different forms data takes is highly important. 
+
+#### 3.2.1 Training vs Test Data
+
+When it comes time to train your classifier or model, you're going to need to split your data into <b>testing</b> and <b>training</b> data. 
+
+Typically, the majority of your data will go towards your training data, while only 10-25% of your data will go towards testing. It's important to note there is no overlap between the two. Should you have overlap or use all your training data for testing, your accuracy results will be wrong. Any classifier that's tested on the data it's training is obviously going to do very well since it will have observed those results before, so the accuracy will be high, but wrongly so. 
+
+
+#### 3.2.2 Open Data 
+
+What's open data, you ask? Simple, it's data that's freely  for anyone to use! Some examples include things you might have already heard of, like APIs, online zip files, or by scraping data!
+
+You might be wondering where this data comes from - well, it can come from a variety of sources, but some common ones include large tech companies like Facebook, Google, Instagram. Others include large institutions, like the US government! Otherwise, you can find tons of data from all sorts of organizations and individuals. 
+
+### 3.3 Overfitting vs Underfitting
+
+In section 3.2.1, we mentioned the concept of overfitting your data. The concept of overfitting refers to creating a model that doesn't generalize to your model. In other words, if your model overfits your data, that means it's learned your data <i>too</i> much - it's essentially memorized it. This might not seem like it would be a problem at first, but a model that's just "memorized" your data is one that's going to perform poorly on new, unobserved data. 
+
+Underfitting, on the other hand, is when your model is <i>too</i> generalized to your data. This model will also perform poorly on new unobserved data. This usually means we should increase the number of considered features, which will expand the hypothesis space. 
 
 ## 4.0 Tackling a Data Problem 
 
@@ -177,9 +231,8 @@ So we'll begin by scraping the text off this PDF in R, which has a great package
 
 ``` R
 library(pdftools)
-download.file("http://www.cs.columbia.edu/~jae/3157/files/eval.pdf", "eval.pdf", mode = "wb”)
+download.file("http://undergrad.admissions.columbia.edu/sites/default/files/class_of_2016_profile.pdf", "eval.pdf", mode = "wb”)
 eval <- pdf_text("eval.pdf")
-
 ```
 Just to see that it works, let's try a couple of examples.
 
@@ -234,7 +287,6 @@ u'I luv my <3 iphone & you\u2019re awsm apple. DisplayIsAwesome, sooo happppppy 
 
 ```python
 tweet = ''.join(''.join(s)[:2] for _, s in itertools.groupby(tweet))
-
 ```
 
 Now we get: 
@@ -246,9 +298,43 @@ u'I luv my <3 iphone & you\u2019re awsm apple. DisplayIsAwesome, soo happy http:
 The list goes on on all the possible ways in which you can clean your data. Consider spelling mistakes, grammar issues, etc!
 
 
-### 4.3 Data Analysis
+### 4.3 Data Visualization 
 
-#### 4.3.1 Basics
+#### 4.3.1 Python Modules
+
+
+[bokeh](http://bokeh.pydata.org/en/latest/) is an interactive visualization library for modern web browsers presentation. 
+
+[ggplot](http://ggplot.yhathq.com/) is a plotting system built for making profressional-looking plots quickly with minimal code.
+
+``` python
+from ggplot import *
+
+ggplot(aes(x='date', y='beef'), data=meat) +\
+    geom_line() +\
+    stat_smooth(colour='blue', span=0.2)
+```
+
+[matplotlib](http://matplotlib.org/) is a 2D python plotting library which allows you to generate plots, histograms, power spectra, bar charts, errorcharts, scatterplots, etc, with just a few lines of code.
+
+[pygal](http://pygal.org/en/stable/) is a charting library that includes bar charts, line charts, XY charts, pie charts, radar charts, dot charts, pyramid charts, funnel charts, gauge charts. It also includes css features with pre-defined themes.
+
+[python-igraph](https://pypi.python.org/pypi/python-igraph) is a collection of network analysis tools with the emphasis on efficiency, portability, and ease of use. 
+
+[seaborn](http://seaborn.pydata.org/introduction.html#introduction) is a library for making statistical graphics in Python. It's built on top of matplotlib and is tightly integrated with the PyData stack, including support for numpy and pandas data structures and statistical routines from scipy and statsmodels. 
+- seaborn allows you to choose color palettes to make plots that reveal patterns in your data. 
+- seaborn contains functions for visualizing univariate and bivariate distributions.
+- seaborn offers tools that fit and visualize linear regression models for different kinds of independent and dependent variables.
+- seaborn contains functions that visualize matrices of data and use clustering algorithms to discover structures in those matrices.
+- seaborn offers a function to plot statistical timeseries data.
+
+
+
+#### 4.3.2 R Packages
+
+### 4.4 Data Analysis
+
+#### 4.4.1 Basics
 
 At a very basic level, you can get different numerical results from your text. You can count the number of verbs, the number of nouns, etc. You can also very easily count the number of words in your text and the frequency of each word.
 
@@ -263,20 +349,28 @@ fdist1 = FreqDist(text1)
 
 From here, we'll move the different areas supported by Programming Languages. 
 
-4.3.2 Time Series Analysis 
+4.4.2 Time Series Analysis 
+
+Time Series Analysis includes methods for analyzing time series data to extract meaningful statistics and characteristics. 
 
 [Time Series Datasets](https://datamarket.com/data/list/?q=provider:tsdl)
 
-4.3.3 Deep Learning
+4.4.3 Deep Learning
+
+Deep Learning is a branch of machine learning that involves pattern recognition on unlabeled and unstructured data. and uses a model of computing inspired by the structure of the brain. Hence we call this model a neural network. The basic foundational unit of a neural network is the neuron, which is actually conceptually quite simple. 
 
 [Detexify](http://detexify.kirelabs.org/classify.html)
 
-4.3.4 Natural Language Processing
+4.4.4 Natural Language Processing
+
+Natural Language Processing, or NLP, is an area of computer science that focuses on developing techniques to produce machine-driven analyses of text.
 
 [Google Translate](https://translate.google.com/)
 
 
-## 5.0 Resources
+## 5.0 Final Words
+
+### 5.1 Resources
 
 If you liked any of what you saw, look below for more resources!
 
@@ -284,4 +378,21 @@ If you liked any of what you saw, look below for more resources!
 [List of Public Datasets](https://github.com/caesar0301/awesome-public-datasets)<br>
 [The Art of R Programming](https://www.dropbox.com/s/cr7mg2h20yzvbq3/The_Art_Of_R_Programming.pdf?dl=0)<br>
 [Python Data Visualization Cookbook](https://www.dropbox.com/s/iybhvjblkjymnw7/Python%20Data%20Visualization%20Cookbook%20-%20Milovanovic%2C%20Igor-signed.pdf?dl=0)<br>
+
+
+
+### 5.2 Mini Courses
+
+Learn about courses [here](www.byteacademy.co/all-courses/data-science-mini-courses/).
+
+[Python 101: Data Science Prep](https://www.eventbrite.com/e/python-101-data-science-prep-tickets-30980459388) <br>
+[Intro to Data Science & Stats with R](https://www.eventbrite.com/e/data-sci-109-intro-to-data-science-statistics-using-r-tickets-30908877284) <br>
+[Data Acquisition Using Python & R](https://www.eventbrite.com/e/data-sci-203-data-acquisition-using-python-r-tickets-30980705123) <br>
+[Data Visualization with Python](https://www.eventbrite.com/e/data-sci-201-data-visualization-with-python-tickets-30980827489) <br>
+[Fundamentals of Machine Learning and Regression Analysis](https://www.eventbrite.com/e/data-sci-209-fundamentals-of-machine-learning-and-regression-analysis-tickets-30980917759) <br>
+[Natural Language Processing with Data Science](https://www.eventbrite.com/e/data-sci-210-natural-language-processing-with-data-science-tickets-30981006023) <br>
+[Machine Learning with Data Science](https://www.eventbrite.com/e/data-sci-309-machine-learning-with-data-science-tickets-30981154467) <br>
+[Databases & Big Data](https://www.eventbrite.com/e/data-sci-303-databases-big-data-tickets-30981182551) <br>
+[Deep Learning with Data Science](https://www.eventbrite.com/e/data-sci-403-deep-learning-with-data-science-tickets-30981221668) <br>
+[Data Sci 500: Projects](https://www.eventbrite.com/e/data-sci-500-projects-tickets-30981330995)
 
