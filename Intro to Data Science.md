@@ -247,11 +247,12 @@ Let's break down each of these tags:
 5. `<p>`: HTML paragraphs are defined here. 
 
 We've also got the following tags:
-1. `<a>`: These always define HTML links, such as with 
+
+- `<a>`: These always define HTML links, such as with 
 ``` HTML
 <a href="http://byteacademy.co">This is Byte Academy's website!</a>
 ```
-2. `<table>`: HTML tables are defined with this tag, such as:
+- `<table>`: HTML tables are defined with this tag, such as:
 *Note that the `<tr>`are rows and `<td>` defines columns. 
 ``` HTML
 <table style="width:100%">
@@ -272,7 +273,7 @@ This will yield the following:
 Lesley      Cordero     24
 Helen       Chen        22
 ```
-3. `<li>` initializes the beginning of a list. `<ul>` and `<ol>` each define whether it's an unordered list or an ordered list. 
+- `<li>` initializes the beginning of a list. `<ul>` and `<ol>` each define whether it's an unordered list or an ordered list. 
 
 
 #### 4.1.2 BeautifulSoup
@@ -329,7 +330,7 @@ all_tables = soup.find_all('table')
 Now we have to identify the right table. We filter this by figuring out what the attribute class name is. In chrome, you can check the class name by right click on the table of web page. Then you click "Inspect" and copy the class name. You also go through the output of above command find the class name of right table.
 
 ``` python
-right_table=soup.find('table', class_='wikitable sortable plainrowheaders')
+right_table = soup.find('table', class_='wikitable sortable plainrowheaders')
 ```
 
 And finally, we have scraped all the needed information. 
@@ -353,7 +354,6 @@ Next, is to actually grab the needed data and add it to each list. We iterate th
 for row in right_table.findAll("tr"):
     cells = row.findAll('td')
     states=row.findAll('th') 
-    print(row)
     if len(cells) == 9 or len(cells) == 8: 
         A.append(cells[0].find(text=True))
         B.append(states[0].find(text=True))
@@ -363,9 +363,9 @@ Here, we actually create the DataFrame with pandas:
 
 ``` python
 import pandas as pd
-df=pd.DataFrame(A,columns=['Number'])
-df['State/UT']=B
-df['Admin_Capital']=C
+df=pd.DataFrame(A,columns = ['Number'])
+df['State/UT'] = B
+df['Admin_Capital'] = C
 ```
 
 #### 4.2.2 PDFtools
@@ -443,7 +443,7 @@ The list goes on on all the possible ways in which you can clean your data. Cons
 
 ### 4.4 Data Visualization 
 
-Data Visualization is an import aspect of data science. It allows us to showcase the work we've done through visualizations, which can be stagnant or interactive. 
+Data Visualization is an important aspect of data science. It allows us to showcase the work we've done through visualizations, which can be stagnant or interactive. 
 
 #### 4.4.1 Python Modules
 
@@ -458,7 +458,7 @@ plt.show()
 
 [bokeh](http://bokeh.pydata.org/en/latest/) is an interactive visualization library for modern web browsers presentation. 
 
-[ggplot](http://ggplot.yhathq.com/) is a plotting system built for making profressional-looking plots quickly with minimal code.
+[ggplot](http://ggplot.yhathq.com/) is a plotting system built for making professional-looking plots quickly with minimal code.
 
 ``` python
 from ggplot import *
