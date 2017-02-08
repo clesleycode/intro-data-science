@@ -1,7 +1,9 @@
 Intro to Data Science
 ==================
 
-Brought to you by [Lesley Cordero](http://www.columbia.edu/~lc2958) and [ADI](https://adicu.com)
+Brought to you by [Lesley Cordero](http://www.columbia.edu/~lc2958), [Byte Academy](byteacademy.co) and [ADI](https://adicu.com)
+
+You can also find this curriculum on [Medium](https://medium.com/byteacademyco/intro-to-data-science-d0322a928d68#.hgq576mhb). 
 
 ## Table of Contents
 
@@ -76,8 +78,8 @@ R
 This will prompt a session in R! From here, you can install any needed packages. For the sake of this tutorial, enter the following into your terminal R session:
 
 ```
-install.packages("pdftools)
-install.packages(ggvis) 
+install.packages("pdftools")
+install.packages("ggvis") 
 install.packages("heatmaply")
 ```
 
@@ -97,7 +99,7 @@ To execute the visualizations in matplotlib, do the following:
 
 ```
 cd ~/.matplotlib
-nano matplotlibrc
+vim matplotlibrc
 ```
 And then, write `backend: TkAgg` in the file. Now you should be set up with your virtual environment!
 
@@ -531,6 +533,8 @@ Natural Language Processing, or NLP, is an area of computer science that focuses
 [Google Translate](https://translate.google.com/)
 
 ## 5.0 Final Words
+
+This was a brief overview of Data Science and its different components. Obviously there is more to each component we went through, but this tutorial should have given you an idea of what a data problem should look like. 
 
 ### 5.1 Resources
 
