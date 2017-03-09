@@ -339,9 +339,11 @@ And finally, we have scraped all the needed information.
 
 ### 4.2 Data Preparation
 
+Once we've acquired the needed data, it might not be in a format that's easy to work with. This brings us to the data preparation stage of the data science process.
+
 #### 4.2.1 Pandas DataFrame
 
-Once you have all your dataset, the next step will likely be data preparation. In the previous example, we'll be storing it to a pandas DataFrame.
+Like we said before, once you have your dataset, the next step will likely be data preparation. From the previous example, we'll be storing it to a pandas DataFrame.
 
 We're now going to begin by storing the data from the website. We'll grab the first few columns, so we'll initialize a list for each of these here:
 
