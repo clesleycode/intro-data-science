@@ -46,7 +46,7 @@ You can also find this curriculum on [Medium](https://medium.com/byteacademyco/i
 
 ## 0.0 Setup
 
-This guide was written in Python 3.5 and R 3.2.3.
+This guide was written in Python 3.6 and R 3.2.3.
 
 ### 0.1 Python & Pip
 
@@ -82,28 +82,6 @@ install.packages("pdftools")
 install.packages("ggvis") 
 install.packages("heatmaply")
 ```
-
-### 0.4 Virtual Environment
-
-If you'd like to work in a virtual environment, you can set it up as follows: 
-```
-pip3 install virtualenv
-virtualenv your_env
-```
-And then launch it with: 
-```
-source your_env/bin/activate
-```
-
-To execute the visualizations in matplotlib, do the following:
-
-```
-cd ~/.matplotlib
-vim matplotlibrc
-```
-And then, write `backend: TkAgg` in the file. Now you should be set up with your virtual environment!
-
-Cool, now we're ready to start! 
 
 ## 1.0 Background
 
@@ -547,19 +525,4 @@ If you liked any of what you saw, look below for more resources!
 [The Art of R Programming](https://www.dropbox.com/s/cr7mg2h20yzvbq3/The_Art_Of_R_Programming.pdf?dl=0)<br>
 [Python Data Visualization Cookbook](https://www.dropbox.com/s/iybhvjblkjymnw7/Python%20Data%20Visualization%20Cookbook%20-%20Milovanovic%2C%20Igor-signed.pdf?dl=0)<br>
 
-
-### 5.2 Mini Courses
-
-Learn about courses [here](www.byteacademy.co/all-courses/data-science-mini-courses/).
-
-[Python 101: Data Science Prep](https://www.eventbrite.com/myevent?eid=31375137882) <br>
-[Intro to Data Science & Stats with R](https://www.eventbrite.com/e/data-sci-109-intro-to-data-science-statistics-using-r-tickets-31375339485) <br>
-[Data Acquisition Using Python & R](https://www.eventbrite.com/e/data-sci-203-data-acquisition-using-python-r-tickets-30980705123) <br>
-[Data Visualization with Python](https://www.eventbrite.com/e/data-sci-201-data-visualization-with-python-tickets-30980827489) <br>
-[Fundamentals of Machine Learning and Regression Analysis](https://www.eventbrite.com/e/data-sci-209-fundamentals-of-machine-learning-and-regression-analysis-tickets-30980917759) <br>
-[Natural Language Processing with Data Science](https://www.eventbrite.com/e/data-sci-210-natural-language-processing-with-data-science-tickets-30981006023) <br>
-[Machine Learning with Data Science](https://www.eventbrite.com/e/data-sci-309-machine-learning-with-data-science-tickets-30981154467) <br>
-[Databases & Big Data](https://www.eventbrite.com/e/data-sci-303-databases-big-data-tickets-30981182551) <br>
-[Deep Learning with Data Science](https://www.eventbrite.com/e/data-sci-403-deep-learning-with-data-science-tickets-30981221668) <br>
-[Data Sci 500: Projects](https://www.eventbrite.com/e/data-sci-500-projects-tickets-30981330995)
 
